@@ -49,7 +49,7 @@
       position:fixed;
       inset:0;
       pointer-events:none;
-      opacity:.045;
+      opacity:.04;
       background-image:
         linear-gradient(rgba(255,255,255,.85) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.85) 1px, transparent 1px);
@@ -60,7 +60,7 @@
       position:fixed;
       border-radius:999px;
       filter:blur(18px);
-      opacity:.18;
+      opacity:.16;
       pointer-events:none;
       z-index:0;
       animation:float 18s ease-in-out infinite alternate;
@@ -160,7 +160,7 @@
       width:240px;
       height:240px;
       border-radius:50%;
-      background:radial-gradient(circle, rgba(255,138,61,.24), transparent 65%);
+      background:radial-gradient(circle, rgba(255,138,61,.22), transparent 65%);
       pointer-events:none;
     }
 
@@ -174,18 +174,25 @@
       box-shadow:0 16px 30px rgba(0,0,0,.42);
       transform:rotate(-1.5deg);
       transition:transform .25s ease, box-shadow .25s ease;
-      background:url("your-profile-image.jpg") center/cover no-repeat;
+      background:rgba(255,255,255,.04);
       contain:content;
     }
     .avatar:hover{
       transform:rotate(0deg) scale(1.02);
       box-shadow:0 18px 34px rgba(0,0,0,.55);
     }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
     .avatar::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.45));
+      background:linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.35));
+      pointer-events:none;
     }
     .avatar::after{
       content:"HDX_1.0";
@@ -197,6 +204,7 @@
       letter-spacing:.08em;
       text-transform:uppercase;
       text-shadow:0 4px 16px rgba(0,0,0,.5);
+      pointer-events:none;
     }
 
     .eyebrow{
@@ -475,7 +483,9 @@
     </header>
 
     <section class="hero">
-      <div class="avatar" aria-hidden="true"></div>
+      <div class="avatar" aria-hidden="true">
+        <img src="./your-profile-image.jpg" alt="AMAN logo" />
+      </div>
       <div>
         <div class="eyebrow">✨ Professional • Modern • Fast</div>
         <h1><span class="name">AMAN</span> <span class="typing" id="typingText">HDX_1.0</span></h1>
