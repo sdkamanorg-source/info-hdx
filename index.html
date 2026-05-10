@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -244,28 +244,49 @@
       line-height:1.75;
     }
 
-    .chip-row,.skill-row,.social-row{
+    .chip-row,.skill-row,.social-row,.about-badges{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
     }
-    .chip,.skill,.social{
+
+    .chip{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:10px 14px;
+      gap:10px;
+      padding:11px 15px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.11);
-      background:rgba(255,255,255,.05);
-      color:#eef1ff;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      color:#fff;
       text-decoration:none;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
-      will-change:transform;
+      font-family:'Outfit', sans-serif;
+      font-weight:800;
+      letter-spacing:.02em;
+      box-shadow:0 12px 26px rgba(0,0,0,.22);
+      backdrop-filter:blur(10px);
+      transition:transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
     }
-    .chip:hover,.skill:hover,.social:hover,.button:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,138,61,.4);
-      background:rgba(255,255,255,.08);
+    .chip:hover{
+      transform:translateY(-2px) scale(1.01);
+      border-color:rgba(255,138,61,.45);
+      background:linear-gradient(135deg, rgba(255,138,61,.18), rgba(124,92,255,.12));
+      box-shadow:0 14px 30px rgba(0,0,0,.28);
+    }
+    .chip-icon{
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      font-size:1rem;
+      background:linear-gradient(135deg, rgba(124,92,255,.95), rgba(255,138,61,.95));
+      box-shadow:0 8px 18px rgba(124,92,255,.22);
+    }
+    .chip-text{
+      font-size:.95rem;
+      font-weight:800;
     }
 
     .top-actions{
@@ -296,6 +317,11 @@
     }
     .button.secondary{
       background:rgba(41,215,165,.08);
+    }
+    .button:hover,.skill:hover,.social:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,138,61,.4);
+      background:rgba(255,255,255,.08);
     }
 
     .section{
@@ -337,6 +363,50 @@
       background:linear-gradient(90deg,var(--accent), transparent);
     }
 
+    .about-card{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .about-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(135deg, rgba(10,14,24,.80), rgba(10,14,24,.48)),
+        url('./about-bg.jpg') center/cover no-repeat;
+      opacity:.9;
+      z-index:-2;
+      transform:scale(1.05);
+    }
+
+    .about-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(124,92,255,.20), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(255,138,61,.16), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      z-index:-1;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .about-panel{
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.05);
+      border-radius:22px;
+      padding:16px;
+      backdrop-filter:blur(12px);
+    }
+
     .stats{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -355,6 +425,39 @@
       margin-bottom:5px;
     }
     .stat span{color:var(--muted);font-size:.9rem}
+
+    .about-note{
+      margin-top:12px;
+      color:#d7def7;
+      line-height:1.7;
+      font-size:.98rem;
+    }
+
+    .about-badges{
+      margin-top:14px;
+    }
+
+    .about-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 13px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      font-family:'Outfit', sans-serif;
+      font-weight:800;
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .about-badge .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 0 14px rgba(124,92,255,.45);
+    }
 
     .info-list{
       margin-top:14px;
@@ -436,7 +539,7 @@
     @keyframes caret{50%{border-color:transparent}}
 
     @media (max-width:980px){
-      .hero,.section{grid-template-columns:1fr}
+      .hero,.section,.about-grid{grid-template-columns:1fr}
       .avatar{width:145px;height:145px}
       .stats,.contacts{grid-template-columns:1fr}
       .nav{border-radius:24px}
@@ -501,11 +604,11 @@
 
         <div style="height:14px"></div>
         <div class="chip-row">
-          <div class="chip">👨‍💻 Website Developer</div>
-          <div class="chip">☁️ VPS Hosting</div>
-          <div class="chip">⛏️ Minecraft Hosting</div>
-          <div class="chip">🇮🇳 India</div>
-          <div class="chip">⚡ Fast UI</div>
+          <div class="chip"><span class="chip-icon">👨‍💻</span><span class="chip-text">Website Developer</span></div>
+          <div class="chip"><span class="chip-icon">☁️</span><span class="chip-text">VPS Hosting</span></div>
+          <div class="chip"><span class="chip-icon">⛏️</span><span class="chip-text">Minecraft Hosting</span></div>
+          <div class="chip"><span class="chip-icon">🇮🇳</span><span class="chip-text">India</span></div>
+          <div class="chip"><span class="chip-icon">⚡</span><span class="chip-text">Fast UI</span></div>
         </div>
 
         <div class="top-actions">
@@ -516,23 +619,41 @@
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="card">
-        <h2 class="section-title">About Me</h2>
-        <div class="stats">
-          <div class="stat"><strong>16</strong><span>Years Old</span></div>
-          <div class="stat"><strong>HDX_1.0</strong><span>Nickname</span></div>
-          <div class="stat"><strong>India</strong><span>Location</span></div>
+    <section class="card about-card" id="about" style="margin-top:18px;">
+      <h2 class="section-title">About Me</h2>
+
+      <div class="about-grid">
+        <div class="about-panel">
+          <div class="stats">
+            <div class="stat"><strong>16</strong><span>Years Old</span></div>
+            <div class="stat"><strong>HDX_1.0</strong><span>Nickname</span></div>
+            <div class="stat"><strong>India</strong><span>Location</span></div>
+          </div>
+
+          <div class="about-note">
+            I build clean, premium, and fast websites with modern UI. I also work on hosting setups,
+            landing pages, and custom design systems that look good on both mobile and desktop.
+          </div>
+
+          <div class="about-badges">
+            <div class="about-badge"><span class="dot"></span>Premium Design</div>
+            <div class="about-badge"><span class="dot"></span>Fast Performance</div>
+            <div class="about-badge"><span class="dot"></span>Responsive Layout</div>
+          </div>
         </div>
 
-        <div class="info-list">
-          <div class="info"><b>Name</b><span>AMAN</span></div>
-          <div class="info"><b>Work</b><span>Web development, hosting, custom pages, and related tasks</span></div>
-          <div class="info"><b>Focus</b><span>Clean design, smooth performance, modern UI</span></div>
-          <div class="info"><b>Status</b><span>Open for projects</span></div>
+        <div class="about-panel">
+          <div class="info-list">
+            <div class="info"><b>Name</b><span>AMAN</span></div>
+            <div class="info"><b>Work</b><span>Web development, hosting, custom pages</span></div>
+            <div class="info"><b>Focus</b><span>Clean design, smooth performance, modern UI</span></div>
+            <div class="info"><b>Status</b><span>Open for projects</span></div>
+          </div>
         </div>
       </div>
+    </section>
 
+    <section class="section">
       <div class="card" id="skills">
         <h2 class="section-title">Skills</h2>
         <div class="skill-row">
@@ -546,9 +667,10 @@
           <div class="skill">VPS Hosting</div>
           <div class="skill">Landing Pages</div>
         </div>
+      </div>
 
-        <div style="height:16px"></div>
-        <h2 class="section-title" id="services">Services</h2>
+      <div class="card" id="services">
+        <h2 class="section-title">Services</h2>
         <div class="timeline">
           <div class="timeline-item">
             <strong>Website Development</strong>
@@ -560,7 +682,7 @@
           </div>
           <div class="timeline-item">
             <strong>Custom Design</strong>
-            <p>Best stylish UI with polished buttons, custom sections, and premium profile pages.</p>
+            <p>Stylish UI with polished buttons, custom sections, and premium profile pages.</p>
           </div>
         </div>
       </div>
